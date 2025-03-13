@@ -13,4 +13,7 @@ export class ButtonComponent {
   @Input() type = 'button';
 
 
+  console.log
+
+
 }
