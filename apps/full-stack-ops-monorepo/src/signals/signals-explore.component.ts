@@ -1,4 +1,4 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './signals-explore.component.html',
   styleUrl: './signals-explore.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignalsExploreComponent {
 
@@ -51,6 +52,11 @@ return course.title;
     console.log(`current values: ${currentCount} 
       ${derivedCounter}`);
     })
+
+    const readOnlyCounter = this.counterSignal.asReadonly();
+
+    // this throws a compilation error
+    //readOnlyCounter.set(5);
 
     effectRef.destroy();
   }

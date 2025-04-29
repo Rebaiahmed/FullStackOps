@@ -11,9 +11,4 @@ export class ButtonComponent {
 
   @Input() label = 'Click Me';
   @Input() type = 'button';
-
-
-  console.log
-
-
 }

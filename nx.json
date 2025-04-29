@@ -18,9 +18,12 @@
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml",
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
-  "nxCloudId": "67ceb6e40cd7443b451674e7",
+  "nxCloudId": "6810a8c94a6391016e7b05fd",
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
       "cache": true,
