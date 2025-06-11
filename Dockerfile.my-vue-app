@@ -1,0 +1,38 @@
+# Dockerfile.my-vue-app at the root of your monorepo
+
+####################
+# BUILDER STAGE
+####################
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+COPY nx.json tsconfig.base.json ./
+COPY apps apps/
+COPY libs libs/
+COPY tools tools/
+
+RUN yarn install --frozen-lockfile --network-timeout 100000
+
+# Build the specific Vue application
+# Using npx nx build my-vue-app --configuration=production
+RUN npx nx build my-vue-app --configuration=production
+
+####################
+# RUNNER STAGE
+####################
+# Use a lightweight Nginx image to serve the static Vue app
+FROM nginx:alpine AS runner
+
+# Copy the Nginx configuration file (create this next)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy the built Vue application from the builder stage to Nginx's static files directory
+COPY --from=builder /app/dist/apps/my-vue-app /usr/share/nginx/html
+
+# Expose the default Nginx port
+EXPOSE 80
+
+# Command to start Nginx (default for nginx:alpine image)
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,6 +1,45 @@
-node_modules
-.git
-*.log
-dist
-coverage
-yarn-error.log
+# .dockerignore at the root of your monorepo
+
+# Ignore all node_modules (will be installed inside Docker)
+node_modules/
+
+# Ignore Nx cache and temporary files
+.nx/
+tmp/
+
+# Build artifacts (will be copied only when needed)
+dist/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Version control
+.git/
+.gitignore
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+
+# Specific project files to ignore if not needed for build
+# For example, if you're only building one app, you might ignore others' source
+apps/*/src/
+libs/*/src/
+# However, for a general build process, keeping them might be necessary
+# depending on your build target.
+
+# Test related
+coverage/
+e2e/
+# Cypress
+cypress/
+cypress.config.ts

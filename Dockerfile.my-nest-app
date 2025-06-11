@@ -1,0 +1,39 @@
+# Dockerfile.my-nest-app at the root of your monorepo
+
+####################
+# BUILDER STAGE
+####################
+FROM node:20-alpine AS builder
+
+# Set working directory for the builder stage
+WORKDIR /app
+
+# Copy lock file and package.json first to leverage Docker cache
+COPY package.json yarn.lock ./
+# Copy nx.json and tsconfig.base.json for Nx to resolve paths
+COPY nx.json tsconfig.base.json ./
+# Copy apps directory (contains your source code)
+COPY apps apps/
+
+# Build the specific NestJS application
+RUN npx nx build my-nest-app --configuration=production
+
+####################
+# RUNNER STAGE
+####################
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Install production dependencies only for the NestJS app
+COPY package.json ./
+RUN yarn install --frozen-lockfile --production --network-timeout 100000
+
+# Copy the built application from the builder stage
+COPY --from=builder /app/dist/apps/my-nest-app ./dist/apps/my-nest-app
+
+# Expose the port your NestJS app listens on
+EXPOSE 3000
+
+# Define the command to run the NestJS application
+CMD ["node", "dist/apps/my-nest-app/main.js"]

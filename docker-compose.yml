@@ -1,0 +1,36 @@
+# docker-compose.yml at the root of your monorepo
+version: '3.8'
+
+services:
+  # NestJS Backend Service
+  backend:
+    build:
+      context: . # Build context is the root of the monorepo
+      dockerfile: Dockerfile.my-nest-app # Specify the Dockerfile for the backend
+    container_name: my-nest-app-backend
+    ports:
+      - "3000:3000" # Map host port 3000 to container port 3000
+    # Add environment variables if needed (e.g., database connection)
+    environment:
+      NODE_ENV: production
+      # DATABASE_URL: postgres://user:password@db:5432/mydb
+    # volumes:
+    #   - ./apps/my-nest-app:/app/apps/my-nest-app # Mount source for development (optional)
+    #   - /app/node_modules # Avoid overwriting node_modules if mounting source
+    # For development, you might want to run `nx serve my-nest-app` on your host
+    # and not build it inside docker-compose. This is for running the *built* app.
+    restart: unless-stopped # Restart policy
+
+  # Vue Frontend Service
+  frontend:
+    build:
+      context: . # Build context is the root of the monorepo
+      dockerfile: Dockerfile.my-vue-app # Specify the Dockerfile for the frontend
+    container_name: my-vue-app-frontend
+    ports:
+      - "80:80" # Map host port 80 to container port 80 (for Nginx)
+      - "443:443" # Map host port 443 if using HTTPS (optional)
+    # Ensure frontend depends on backend for proper startup order (optional, if frontend needs backend to be ready)
+    depends_on:
+      - backend
+    restart: unless-stopped
