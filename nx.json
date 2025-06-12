@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "cacheableOperations": ["build", "test", "lint"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -134,6 +135,10 @@
     },
     "@nx/angular:component": {
       "style": "css"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     }
   }
 }

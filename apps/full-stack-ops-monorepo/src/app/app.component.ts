@@ -11,4 +11,5 @@ import { SignalsExploreComponent } from '../signals/signals-explore.component';
 })
 export class AppComponent {
   title = 'full-stack-ops-monorepo';
+  private unusedVar: string = 'hello';
 }

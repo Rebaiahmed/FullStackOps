@@ -15,8 +15,6 @@ COPY package.json yarn.lock ./
 COPY nx.json tsconfig.base.json ./
 # Copy all project related files (apps, libs, tools)
 COPY apps apps/
-COPY libs libs/
-COPY tools tools/
 
 # Install root-level dependencies
 RUN yarn install --frozen-lockfile --network-timeout 100000
