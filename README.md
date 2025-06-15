@@ -1,17 +1,38 @@
 # 🚀 Full-Stack Monorepo Practice Project
 
-This monorepo is built with [Nx](https://nx.dev) to explore and practice building scalable **full-stack applications** using modern tools and technologies. It includes:
+This monorepo is built with [Nx](https://nx.dev) to explore and practice building scalable **full-stack applications** using modern tools and technologies.
 
-- 🧱 Angular & Vue for Frontend  
-- ⚙️ NestJS for Backend (API)  
-- 🧪 Cypress & Playwright for E2E Testing  
-- 🧹 ESLint / TSLint for Code Quality  
-- 🔬 Jest & Vite for Unit Testing  
-- 📘 Storybook for UI Components  
-- 🐳 Docker for Containerization  
-- ☁️ AWS & Kubernetes for Cloud Infrastructure  
-- 📈 Logging & Monitoring Integrations  
-- 🎯 Nx Affected for Optimized CI/CD  
+🎯 **Goal**: Practice the full life cycle of software development and continue learning through iterative, real-world projects.
+
+---
+
+## 📝 Project Description
+
+This is a self-directed, hands-on project aimed at simulating a real-world, full-stack product development lifecycle. It incorporates modern frontend frameworks (Angular and Vue), backend APIs (NestJS), and shared tooling in a monorepo structure. The purpose is to continuously iterate, refactor, test, and ship improvements while documenting decisions and architecture throughout the journey.
+
+---
+
+## 🛣️ Project Roadmap
+
+### 🗂️ Project Plan
+
+You can also [view the project board on Trello](https://trello.com) for real-time task tracking.
+
+| 🧩 Feature/Area   | 📋 Description                 | 🚦 Status        | 👤 Owner | 📅 Due Date |
+|-------------------|---------------------------------|------------------|----------|-------------|
+|                   |                                 | To Do / Doing / Done |          |             |
+
+---
+
+## 🧠 Project Architecture
+
+*To be documented: structure, patterns, and design decisions.*
+
+---
+
+## 🛠️ Project Tech Stack
+
+*To be listed: all tools, frameworks, and libraries used in this monorepo.*
 
 ---
 
@@ -19,13 +40,13 @@ This monorepo is built with [Nx](https://nx.dev) to explore and practice buildin
 
 This Nx workspace supports multiple frameworks and tools, organized into domain-driven libraries and applications.
 
-- `apps/` - Angular, Vue, and NestJS applications  
-- `libs/` - Shared and feature-specific libraries  
-- `.github/`, `tools/` - CI/CD scripts and custom tooling  
+- `apps/` - Angular, Vue, and NestJS applications
+- `libs/` - Shared and feature-specific libraries
+- `.github/`, `tools/` - CI/CD scripts and custom tooling
 
 ---
 
-## 📦 Quick Start
+## ⚡ Quick Start
 
 Install dependencies:
 
@@ -36,148 +57,106 @@ npm install
 Serve the Angular app:
 
 ```bash
-npx nx serve full-stack-ops-monorepo
+npm run start:full-stack
 ```
 
-Build the project:
+Serve the NestJS backend:
 
 ```bash
-npx nx build full-stack-ops-monorepo
+npm run start:nest
+```
+
+Serve the Vue.js app:
+
+```bash
+npm run start:vue
+```
+
+Start all apps:
+
+```bash
+npm run start:all
+```
+
+Build the full stack app:
+
+```bash
+npm run build:full-stack
 ```
 
 Run affected apps/libs after a commit:
 
 ```bash
-npx nx affected:build
+nx affected:build
 ```
 
 ---
 
 ## 🧪 Testing
 
-Run unit tests with **Jest**:
+Run all unit tests:
 
 ```bash
-npx nx test my-lib-or-app
+npm run test:all
 ```
 
-Use **Vite** for fast dev & test cycles where applicable.
-
-Run end-to-end tests with **Cypress** or **Playwright**:
+Run end-to-end tests:
 
 ```bash
-npx nx e2e my-app-e2e
+npm run e2e:all
 ```
 
 ---
 
 ## 📚 Storybook
 
-To run Storybook for components:
+To start Storybook (for component design system):
 
 ```bash
-npx nx storybook ui-library-name
+nx run your-lib:storybook
 ```
+
+Documentation and visual testing support is included.
 
 ---
 
-## 🧹 Code Quality
+## ✅ Code Quality Measurement
 
-Lint your code using ESLint (TSLint support where applicable):
+- Use ESLint for linting:
 
 ```bash
-npx nx lint my-lib-or-app
+npm run lint
 ```
+
+- Run lint only on affected projects:
+
+```bash
+npm run lint:affected
+```
+
+- Type checking and formatting can be added with TypeScript and Prettier.
 
 ---
 
-## 🐳 Docker Support
+## ☁️ Deployment to AWS
 
-Build Docker images:
-
-```bash
-docker build -t my-app ./apps/my-app
-```
-
-Run container:
-
-```bash
-docker run -p 3000:3000 my-app
-```
+*To be documented: instructions for deploying frontend and backend to AWS services like S3, EC2, Lambda, or ECS.*
 
 ---
 
-## ☁️ AWS + Kubernetes
+## 🎨 Project UI/UX
 
-Deployments and infrastructure setups include:
-
-- Infrastructure-as-Code templates  
-- Kubernetes YAMLs  
-- Helm charts for microservices  
-- AWS CLI/CDK or Terraform configurations (optional)  
-
----
-
-## 🧭 Nx Tips
-
-Explore all available tasks:
-
-```bash
-npx nx show project full-stack-ops-monorepo
-```
-
-Visualize the dependency graph:
-
-```bash
-npx nx graph
-```
-
-Generate new apps/libraries:
-
-```bash
-npx nx g @nx/angular:app my-angular-app
-npx nx g @nx/vue:app my-vue-app
-npx nx g @nx/nest:app my-api
-npx nx g @nx/angular:lib shared-ui
-```
-
----
-
-## 🔧 Developer Tools
-
-- [Nx Console (VSCode/IntelliJ)](https://nx.dev/getting-started/editor-setup) for GUI-based Nx commands  
-- [Nx Plugin Registry](https://nx.dev/plugin-registry)  
-
----
-
-## 📈 Logging & Monitoring
-
-Integrations and practice for:
-
-- Logging (e.g., Winston, Pino)  
-- Metrics and tracing (e.g., Prometheus, Grafana)  
-- Error tracking (e.g., Sentry)  
-
----
-
-## 📌 Goals of this Monorepo
-
-- Practice **monorepo management**  
-- Explore **CI/CD pipelines** with affected builds  
-- Test **multi-framework** development  
-- Develop & document **end-to-end lifecycle** of full-stack apps  
-- Integrate **modern DevOps practices**  
+*To be documented: user flows, design decisions, accessibility considerations, and user experience guidelines.*
 
 ---
 
 ## 🤝 Community & Resources
 
-- [Nx Documentation](https://nx.dev)  
-- [Storybook Docs](https://storybook.js.org/docs/react/get-started/introduction)  
-- [NestJS Docs](https://docs.nestjs.com/)  
-- [AWS Docs](https://docs.aws.amazon.com/)  
-- [Kubernetes Docs](https://kubernetes.io/docs/)  
-
----
-
-This is a **learning-focused monorepo**, ideal for mastering real-world full-stack architecture and DevOps practices in a modern developer environment.
+- [Nx Documentation](https://nx.dev)
+- [Angular Documentation](https://angular.io/docs)
+- [Vue.js Documentation](https://vuejs.org/guide/introduction.html)
+- [NestJS Docs](https://docs.nestjs.com/)
+- [ESLint Documentation](https://eslint.org/docs/latest/)
+- [Lighthouse Documentation](https://github.com/GoogleChrome/lighthouse)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [Docker Documentation](https://docs.docker.com/)
