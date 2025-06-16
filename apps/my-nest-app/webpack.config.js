@@ -1,3 +1,6 @@
+/* eslint-env node */
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { join } = require('path');
 

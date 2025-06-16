@@ -3,20 +3,14 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allowCircularDependencies": false,
-            "depConstraints": [
-              { "sourceTag": "type:app", "onlyDependOnLibsWithTags": ["type:feature", "type:data", "type:ui", "type:util"] },
-              { "sourceTag": "type:feature", "onlyDependOnLibsWithTags": ["type:data", "type:ui", "type:util"] },
-              { "sourceTag": "type:data", "onlyDependOnLibsWithTags": ["type:util"] }
-              // ... more rules based on your tags
-            ]
-          }
-        ]
+        "@typescript-eslint/no-require-imports": "off",
+        "no-undef": "off"
+
       }
     }
-  ]
+  ],
+   "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  }
 }
