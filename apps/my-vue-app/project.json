@@ -4,5 +4,38 @@
   "projectType": "application",
   "sourceRoot": "apps/my-vue-app/src",
   "// targets": "to see all targets run: nx show project my-vue-app --web",
-  "targets": {}
+  "targets": {
+      "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/vue3",
+        "port": 4400,
+        "configDir": "apps/my-vue-app/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test": {
+    "executor": "@nx/vite:test",
+    "options": {
+      "configFile": "apps/my-vue-app/vite.config.ts"
+    }
+  },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/my-vue-app",
+        "configDir": "apps/my-vue-app/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  }
 }

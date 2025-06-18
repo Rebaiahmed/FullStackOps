@@ -39,4 +39,12 @@ export default defineConfig(() => ({
       provider: 'v8' as const,
     },
   },
+   coverage: {
+      provider: 'c8',
+      reporter: ['text', 'html'],
+      reportsDirectory: './coverage',
+      all: true,
+      include: ['src/**/*.{ts,vue}'],
+      exclude: ['node_modules/', 'tests/'],
+    },
 }));
